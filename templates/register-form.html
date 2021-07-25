@@ -1,0 +1,80 @@
+<div class="modal fade" id="registerModal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register Form</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="email" id="register-email" class="form-control" data-mdb-showcounter="true"
+                        maxlength="50">
+                    <label class="form-label" for="register-email" style="margin-left: 0px;">Email
+                        address</label>
+                    <div class="form-helper"></div>
+                    <div class="form-helper  register-email-error  text-danger  error "></div>
+                </div>
+
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="register-name" class="form-control" data-mdb-showcounter="true"
+                        maxlength="20">
+                    <label class="form-label" for="register-name" style="margin-left: 0px;">Name</label>
+                    <div class="form-helper"></div>
+                    <div class="form-helper  register-name-error  text-danger  error "></div>
+                </div>
+
+                <!-- passowrd input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="register-password" class="form-control" data-mdb-showcounter="true"
+                        maxlength="20">
+                    <label class="form-label" for="register-password" style="margin-left: 0px;">Password</label>
+                    <div class="form-helper"></div>
+                    <div class="form-helper  register-password-error  text-danger  error "></div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- course select -->
+                        <select class=" mb-2 btn btn-outline-light-grey btn-block" id="register-course">
+                            <option value="select course">Select Course</option>
+                            <option value="it">IT</option>
+                        </select>
+                        <div class="register-course-error  text-danger  error "></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--  year select -->
+                        <select class=" mb-2 btn btn-outline-light-grey btn-block" id="register-year">
+                            <option value="select year">Select Year</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">2</option>
+                        </select>
+                        <div class="register-year-error  text-danger  error "></div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <!--  year select -->
+                        <select class=" mb-2 btn btn-outline-light-grey btn-block"  id="register-semester">
+                            <option value="select semester">Select Semester</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <div class="register-semester-error  text-danger  error "></div>
+                    </div>
+                </div>
+
+                  <!-- main error  -->
+                  <div class=" mb-2">
+                    <div class="register-program-error  text-danger  error "></div>
+                </div>
+                <!-- Submit button -->
+                <button type="button" class="btn btn-primary btn-block" id="register-submit-button">Register</button>
+
+            </div>
+        </div>
+    </div>
+</div>

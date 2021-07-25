@@ -1,0 +1,37 @@
+<div class="modal fade" id="loginModal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog  modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login Form</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="login-email" class="form-control" data-mdb-showcounter="true"
+                            maxlength="50">
+                        <label class="form-label" for="login-email" style="margin-left: 0px;">Email
+                            address</label>
+                        <div class="form-helper"></div>
+                        <div class="form-helper login-email-error  text-danger  error "></div>
+                    </div>
+                    <!--password input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="login-password" class="form-control" data-mdb-showcounter="true"
+                            maxlength="20">
+                        <label class="form-label" for="login-password" style="margin-left: 0px;">Password</label>
+                        <div class="form-helper"></div>
+                        <div class="form-helper text-danger login-password-error  error"></div>
+                    </div>
+
+                    <!-- main error  -->
+                    <div class="mb-4">
+                        <div class="login-program-error  text-danger  error "></div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block" id="login-submit-button">Login</button>
+            </div>
+        </div>
+    </div>
+</div>

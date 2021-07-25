@@ -1,0 +1,26 @@
+install python  https://www.python.org/ftp/python/3.8.7/python-3.8.7.exe
+install xampp  https://www.apachefriends.org/xampp-files/7.3.29/xampp-windows-x64-7.3.29-1-VC15-installer.exe
+
+install package  via cmd
+   pip install virtualenv
+
+create envirnment
+    virtualenv  name_of_env
+
+
+
+from current folder
+
+cd name_of_env
+cd Scripts
+activate
+
+cd..
+cd..
+
+install package  via cmd
+   pip install  flask
+   pip install  pymysql
+
+
+py app.py

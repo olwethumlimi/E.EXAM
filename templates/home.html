@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+
+<body class="">
+
+    <div class="navbar bg-white sticky-top">
+        <div class="container-fluid">
+            <div class="icon">EExam</div>
+            <div class="div">
+                <button class="btn btn-outline-success btn-rounded " data-mdb-toggle="modal"
+                    data-mdb-target="#change_semester_modal">profile</button>
+                <a class="btn btn-outline-primary btn-rounded" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- into box  -->
+    <div class="intro2">
+        <div class="box">
+            <div class="item">
+                <div class="heading text-white">
+                    <h1 class="py-5-1">Welcome to <div class="logo">EExam</div>
+                    </h1>
+                    <h3 style="max-width: 400px; margin: auto; font-weight: 400;width: 80%;">get ready for your exams
+                        asap! The Future is Now</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end -->
+
+    <!--  change semeter modal -->
+    {% include 'semester-form.html' %}
+    <!-- end  change semeter modal -->
+
+    <!--  pop up after exam modal -->
+    <div class="modal fade show" data-mdb-backdrop="static" data-mdb-keyboard="false" id="after_taking_exam_modal"
+        tabindex="-1" aria-modal="true" role="dialog">
+        <div class="modal-dialog  modal-dialog-scrollable ">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alert</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="h1 text-center text-success" style="font-size: 50px;"> <i
+                            class="fa  fa-check-circle"></i>
+                    </div>
+                    <b>Thank you for taking the test your marks will be display on the score panel</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end pop up after exam modal -->
+
+    <!--  start modal -->
+    <div class="modal fade " data-mdb-backdrop="static" data-mdb-keyboard="false" id="info_modal" tabindex="-1"
+        aria-modal="true" role="dialog">
+        <div class="modal-dialog  modal-dialog-scrollable ">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Info</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="h1 text-center text-info" style="font-size: 50px;"> <i class="fa  fa-info-circle"></i>
+                    </div>
+                    <b>Please note*</b>
+                    In order to start you on your journey to success!
+
+                    You will need to take an assessment which will determine your level of understanding based on your
+                    results.
+
+                    It is advanced not to prepare for the test to allow for true reflection of understanding.Which will
+                    allow the system to place you under the suitable level.
+
+                    Rules to advance
+                    To advance to the next level, you must get over 60% on 5 practice tests!
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info " data-mdb-toggle="modal" data-mdb-target="#exam_modal"
+                        data-mdb-dismiss="modal">Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end start modal -->
+
+    <!--  exam modal -->
+    {% include 'questions.html' %}
+    <!-- end exam modal -->
+
+ 
+
+    <div class="container">
+
+
+
+        {%if data.courses|length >0 %}
+
+        <div>
+            <div class="blocks">
+                <div class="items bg-red bg-danger"></div>
+                <div class="text">trying</div>
+
+            </div>
+            <div class="blocks ">
+                <div class="items bg-secondary"></div>
+                <div class="text">good</div>
+            </div>
+            <div class="blocks ">
+                <div class="items  bg-success"></div>
+                <div class="text">excellent</div>
+            </div>
+        </div>
+
+        <h1 class="text-center py-3">Exams</h1>
+        <h4 class=" py-0 mt-0">Take Test</h4>
+
+        {%else%}
+             <h3 class="text-center py-3">No data found</h3>
+        {%endif%}
+        <div class="row">
+            {%for i in data.courses %}
+
+            {%set condition = data.check(i.module_name)[0] %}
+
+
+            {%if condition==True%}
+            <div class="col-md-6 col-lg-3 mt-4">
+                <div class="card  h-100" style="border-radius: 20px;">
+                    <!-- <img src="https://mdbootstrap.com/img/new/standard/city/062.jpg" class="card-img-top" alt="..." /> -->
+                    <div class="card-body">
+                        <h5 class="card-title"> {{i.module_name}}</h5>
+                        <p class="card-text">
+                            start your exam
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a onclick="get_questions(this)" data-module-name="{{i.module_name}}"
+                            class="card-link btn btn-outline-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#info_modal">Generate</a>
+                    </div>
+                </div>
+            </div>
+            {%else%}
+            <div class="col-md-6 col-lg-3 mt-4">
+                <div class="card  h-100" style="border-radius: 20px;">
+                    <!-- <img src="https://mdbootstrap.com/img/new/standard/city/062.jpg" class="card-img-top" alt="..." /> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Compulsory {{i.module_name}} Test</h5>
+                        <p class="card-text">
+                            start your exam
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a onclick="get_questions(this)" data-module-name="{{i.module_name}}"
+                            class="card-link btn btn-outline-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#info_modal">Compulsory</a>
+                    </div>
+                </div>
+            </div>
+
+            {%endif%}
+
+
+            {%endfor%}
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <div class="container">
+        {%for item in data.written %}
+        {% set heading= item[0] %}
+        {% set list= item[1] %}
+        {%set tier = data.check(heading)[1] %}
+
+        <!-- <h4 class=" py-0 my-4 d-flex justify-content-between align-items-center">  {{heading}} </h4> -->
+        <div class=" py-0 my-4 d-flex justify-content-between align-items-center">
+            <h4> {{heading}} </h4>
+            <h6>CURRENT TIER {{tier}}</h6>
+        </div>
+        <div class="row">
+
+            {%for i in list %}
+
+            {% if i.mark < 49 %} <div class="col-md-6 col-lg-3 mt-4">
+                <div class="card h-100" style="border-radius: 20px;">
+                    <!-- <img src="https://mdbootstrap.com/img/new/standard/city/062.jpg" class="card-img-top" alt="..." /> -->
+                    <div class="card-body">
+                        <div class=" py-0 d-flex justify-content-between align-items-center">
+                            <span style="text-transform: capitalize;"><strong>{{heading}} </strong> </span>
+                            <span class="date">{{i.test_date}}</span>
+                        </div>
+                        <p class="card-text">
+                            score - {{i.mark}}%
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a data-module-name="{{i.module_name}}" class="card-link btn btn-outline-danger">test
+                            completed</a>
+                    </div>
+                </div>
+        </div>
+        {%endif%}
+
+
+
+        {% if i.mark >=50 and i.mark<=74 %} <div class="col-md-6 col-lg-3 mt-4">
+            <div class="card h-100" style="border-radius: 20px;">
+                <!-- <img src="https://mdbootstrap.com/img/new/standard/city/062.jpg" class="card-img-top" alt="..." /> -->
+                <div class="card-body">
+                    <div class=" py-0 d-flex justify-content-between align-items-center">
+                        <span style="text-transform: capitalize;"><strong>{{heading}} </strong> </span>
+                        <span class="date">{{i.test_date}}</span>
+
+                    </div>
+                    <p class="card-text">
+                        score - {{i.mark}}%
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a data-module-name="{{i.module_name}}" class="card-link btn btn-outline-secondary">test
+                        completed</a>
+                </div>
+            </div>
+    </div>
+    {%endif%}
+
+
+
+    {% if i.mark >=75 %}
+    <div class="col-md-6 col-lg-3 mt-4">
+        <div class="card h-100" style="border-radius: 20px;">
+            <!-- <img src="https://mdbootstrap.com/img/new/standard/city/062.jpg" class="card-img-top" alt="..." /> -->
+            <div class="card-body">
+                <div class=" py-0  d-flex justify-content-between align-items-center">
+                    <span style="text-transform: capitalize;"><strong>{{heading}} </strong> </span>
+                    <span class="date">{{i.test_date}}</span>
+
+                </div>
+                <p class="card-text">
+                    score - {{i.mark}}%
+                </p>
+            </div>
+            <div class="card-footer">
+                <a data-module-name="{{i.module_name}}" class="card-link btn btn-outline-success">test
+                    completed</a>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+
+
+    {%endfor%}
+
+    </div>
+
+    {%endfor%}
+    </div>
+
+
+    <br><br><br><br><br>
+
+    <footer class="bg-dark text-center text-white mt-5  ">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0 mt-5">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!"
+                    role="button"><i class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!"
+                    role="button"><i class="fab fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
+                    role="button"><i class="fab fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!"
+                    role="button"><i class="fab fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!"
+                    role="button"><i class="fab fa-linkedin-in"></i></a>
+                <!-- Github -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;" href="#!"
+                    role="button"><i class="fab fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2021 Copyright:
+            <a class="text-white">EExam</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- MDB -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="static/js/semesterUpdate.js"></script>
+    <script src="/static/js/get_questions.js"></script>
+
+
+
+</body>
+
+</html>
